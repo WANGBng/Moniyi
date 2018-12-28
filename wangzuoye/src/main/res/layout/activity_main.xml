@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    tools:context="com.bwie.wang.wangzuoye.my.activity.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_20"
+        >
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
+            android:layout_alignParentLeft="true"
+             android:src="@mipmap/back"
+            android:layout_marginLeft="@dimen/dp_10"
+            />
+        <EditText
+
+            android:layout_width="@dimen/dp_190"
+            android:layout_height="@dimen/dp_20"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/shap"
+            android:hint="搜一搜你需要的"
+            />
+
+        <ImageView
+            android:id="@+id/qiehuan"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/view_list"
+            android:layout_marginRight="@dimen/dp_10"
+            />
+    </RelativeLayout>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:tabGravity="fill"
+        app:tabSelectedTextColor="#FFFF0000"
+        app:tabTextColor="#848484"
+
+        />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rec_sou"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        >
+    </android.support.v7.widget.RecyclerView>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rec_su"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        >
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>
