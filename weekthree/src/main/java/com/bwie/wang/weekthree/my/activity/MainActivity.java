@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements IView, View.OnCli
         //设置适配器
         mShopAdapter = new ShopAdapter(this);
         mRecyclerView.setAdapter(mShopAdapter);
+
+//        设置吸附
         GroupListener groupListener = new GroupListener() {
             @Override
             public String getGroupName(int position) {
