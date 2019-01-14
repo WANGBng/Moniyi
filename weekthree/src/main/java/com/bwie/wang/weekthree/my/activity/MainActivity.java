@@ -15,6 +15,8 @@ import com.bwie.wang.weekthree.my.adapter.ShopAdapter;
 import com.bwie.wang.weekthree.my.bean.ShopBean;
 import com.bwie.wang.weekthree.my.ok.Apis;
 import com.bwie.wang.weekthree.my.ok.Constants;
+import com.gavin.com.library.StickyDecoration;
+import com.gavin.com.library.listener.GroupListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -69,10 +71,28 @@ public class MainActivity extends AppCompatActivity implements IView, View.OnCli
         //RecyclerView的布局格式
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(linearLayoutManager);
+//        mRecyclerView.setLayoutManager(linearLayoutManager);
         //设置适配器
         mShopAdapter = new ShopAdapter(this);
         mRecyclerView.setAdapter(mShopAdapter);
+        GroupListener groupListener = new GroupListener() {
+            @Override
+            public String getGroupName(int position) {
+                return mList.get(position).getSellerName();
+            }
+        };
+
+        StickyDecoration decoration = StickyDecoration.Builder
+                .init(groupListener)
+                //重置span（使用GridLayoutManager时必须调用）
+                //.resetSpan(mRecyclerView, (GridLayoutManager) manager)
+                .build();
+
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+
+        mRecyclerView.addItemDecoration(decoration);
+
+
         /**
          * ****************选中全部商家，全选/全不选按钮选中*********************
          *               根据选中的商品数量和所有的商品数量比较判断
@@ -202,8 +222,16 @@ public class MainActivity extends AppCompatActivity implements IView, View.OnCli
 
     }
 
+
+
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
+
+
+
+
+
+
 }
