@@ -29,7 +29,10 @@ public class MainActivity extends AppCompatActivity implements SouView {
     RecyclerView recSou;
     SouPresenter souPresenter;
     SousouAdapter sousouAdapter;
-    boolean b=false;//实现通过判断切换
+
+    //实现通过判断切换
+
+    boolean b=false;
 
     Unbinder unbinder;
 

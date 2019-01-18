@@ -2,7 +2,7 @@ package com.bwie.wang.weekthree.mvp.presenter;
 
 import com.bwie.wang.weekthree.callback.MyCallBack;
 import com.bwie.wang.weekthree.mvp.model.IModelImpl;
-import com.bwie.wang.weekthree.my.activity.IView;
+import com.bwie.wang.weekthree.mvp.view.IView;
 
 import java.util.Map;
 

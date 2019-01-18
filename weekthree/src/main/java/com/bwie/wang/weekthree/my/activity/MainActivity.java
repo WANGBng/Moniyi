@@ -1,7 +1,8 @@
 package com.bwie.wang.weekthree.my.activity;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,7 +11,7 @@ import android.widget.TextView;
 
 import com.bwie.wang.weekthree.R;
 import com.bwie.wang.weekthree.mvp.presenter.IPresenterImpl;
-import com.bwie.wang.weekthree.my.activity.IView;
+import com.bwie.wang.weekthree.mvp.view.IView;
 import com.bwie.wang.weekthree.my.adapter.ShopAdapter;
 import com.bwie.wang.weekthree.my.bean.ShopBean;
 import com.bwie.wang.weekthree.my.ok.Apis;
@@ -23,6 +24,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author wangbingjun
+ */
 public class MainActivity extends AppCompatActivity implements IView, View.OnClickListener {
     /**
      * 商家的适配器
@@ -44,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements IView, View.OnCli
      * P层
      */
     private IPresenterImpl mIPresenterImpl;
+    private TextView editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements IView, View.OnCli
         initView();
         getData();
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -66,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements IView, View.OnCli
         mIvCircle = (CheckBox) findViewById(R.id.iv_cricle);
         mAllPriceTxt = (TextView) findViewById(R.id.all_price);
         nSumPrice = (TextView) findViewById(R.id.sum_price_txt);
+        editor = (TextView) findViewById(R.id.editor);
+        editor.setOnClickListener(this);
         mIvCircle.setOnClickListener(this);
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         //RecyclerView的布局格式
@@ -142,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements IView, View.OnCli
                 nSumPrice.setText("去结算(" + num + ")");
             }
         });
+
     }
 
     /**
@@ -156,6 +165,7 @@ public class MainActivity extends AppCompatActivity implements IView, View.OnCli
 
     /**
      * 通过MVP得到的数据
+     *
      * @param data
      */
     @Override
@@ -184,15 +194,22 @@ public class MainActivity extends AppCompatActivity implements IView, View.OnCli
                 //刷新商家适配器
                 mShopAdapter.notifyDataSetChanged();
                 break;
+
+            case R.id.editor:
+                Intent intent = new Intent(this,ViewActivity.class);
+                startActivity(intent);
+                break;
+
             default:
+                break;
 
         }
     }
 
     /**
      * *******************全选/全不选复选框选中**********************
-     *                   1.所有商家的复选框选中
-     *                   2.所有的商品复选框选中
+     * 1.所有商家的复选框选中
+     * 2.所有的商品复选框选中
      * 修改选中状态，获取价格和数量
      */
     private void checkSeller(boolean bool) {
@@ -225,15 +242,9 @@ public class MainActivity extends AppCompatActivity implements IView, View.OnCli
     }
 
 
-
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
-
-
-
-
-
 
 }

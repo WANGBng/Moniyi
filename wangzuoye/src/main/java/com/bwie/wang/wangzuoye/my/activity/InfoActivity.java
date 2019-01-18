@@ -1,5 +1,6 @@
 package com.bwie.wang.wangzuoye.my.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -36,7 +37,11 @@ public class InfoActivity extends AppCompatActivity implements InfoView{
         unbinder = ButterKnife.bind(this);
         infoPresenter=new InfoPresenter();
         infoPresenter.attachView(this);
-        infoPresenter.loadData(1);
+
+        Intent intent = getIntent();
+        int pid = intent.getIntExtra("pid", 1);
+//        Log.d("pidpid", "onCreate: "+pid);
+        infoPresenter.loadData(pid);
     }
     @Override
     public void onSuccess(XiangQingBean xiangQingBean) {

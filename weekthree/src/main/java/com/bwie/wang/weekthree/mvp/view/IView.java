@@ -1,4 +1,4 @@
-package com.bwie.wang.weekthree.my.activity;
+package com.bwie.wang.weekthree.mvp.view;
 
 /**
  * date:2019/1/13.
